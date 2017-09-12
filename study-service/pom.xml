@@ -20,6 +20,10 @@
 			<groupId>com.study</groupId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

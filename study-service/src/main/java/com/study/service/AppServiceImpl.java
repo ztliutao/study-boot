@@ -1,6 +1,7 @@
 package com.study.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import com.model.mapper.AppProtocolDtoMapper;
 import com.vo.AppVO;
 
 @Service
-public class AppServiceImpl {
+public class AppServiceImpl extends BaseService{
 	@Autowired
 	private AppProtocolDtoMapper appMapper;
 	public int addOrder(AppVO vo){
@@ -23,11 +24,18 @@ public class AppServiceImpl {
 		record.setStatus(vo.getStatus());
 		record.setCreateTime(new Date());
 		record.setUpdateTime(new Date());
-		return appMapper.insertSelective(record);
+		
+		
+		return appMapper.insert(record);
 	}
 	
-	public void queryOrder(){
+	public List<AppVO> queryOrder(){
 		AppProtocolDtoExample example=new AppProtocolDtoExample();
-		appMapper.selectByExample(example);
+		List<AppProtocolDto> dtoList=appMapper.selectByExample(example);
+		for (AppProtocolDto dto : dtoList) {
+			AppVO vo=dozerBean().map(dto, AppVO.class);
+			System.out.println(vo);
+		}
+		return null;
 	}
 }
