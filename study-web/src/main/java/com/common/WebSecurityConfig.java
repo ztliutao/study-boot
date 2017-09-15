@@ -15,15 +15,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http
 	            .authorizeRequests()
-	            .antMatchers("/", "/home").permitAll()
-				.anyRequest().authenticated()
-	                .and()
-	            .formLogin()
-	                .loginPage("/login")
-	                .permitAll()
-	                .and()
-	            .logout()
-	                .permitAll();
+	            .antMatchers("/", "/public/**").permitAll()
+                .antMatchers("/users/**").hasAuthority("ADMIN")
+                .anyRequest().fullyAuthenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .usernameParameter("email")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .deleteCookies("remember-me")
+                .logoutSuccessUrl("/")
+                .permitAll()
+                .and()
+                .rememberMe();
 	    }
 
 	    @Autowired
