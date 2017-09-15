@@ -15,6 +15,7 @@
 		<module>study-common</module>
 	</modules>
 	<properties>
+		<java.version>1.8</java.version>
 		<spring.boot.version>1.5.6.RELEASE</spring.boot.version>
 		<javax.servlet.api.version>4.0.0-b07</javax.servlet.api.version>
 		<pagehelper.version>4.2.0</pagehelper.version>
@@ -24,6 +25,8 @@
 		<mybatis.generator.core.version>1.3.2</mybatis.generator.core.version>
 		<org.mybatis.version>3.4.2</org.mybatis.version>
 		<net.sf.dozer.version>5.5.1</net.sf.dozer.version>
+		<spring.boot.security.version>1.5.6.RELEASE</spring.boot.security.version>
+		<thymeleaf.version>1.4.2.RELEASE</thymeleaf.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -98,6 +101,16 @@
 				<groupId>net.sf.dozer</groupId>
 				<artifactId>dozer</artifactId>
 				<version>${net.sf.dozer.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+				<version>${spring.boot.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-thymeleaf</artifactId>
+				<version>${thymeleaf.version}</version>
 			</dependency>
 			<!-- Test -->
 			<dependency>

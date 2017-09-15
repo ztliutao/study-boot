@@ -24,14 +24,13 @@ public class AppServiceImpl extends BaseService{
 		record.setStatus(vo.getStatus());
 		record.setCreateTime(new Date());
 		record.setUpdateTime(new Date());
-		
-		
 		return appMapper.insert(record);
 	}
 	
 	public List<AppVO> queryOrder(){
 		AppProtocolDtoExample example=new AppProtocolDtoExample();
 		List<AppProtocolDto> dtoList=appMapper.selectByExample(example);
+		List<AppVO> list=dozerBean().map(dtoList, List.class);
 		for (AppProtocolDto dto : dtoList) {
 			AppVO vo=dozerBean().map(dto, AppVO.class);
 			System.out.println(vo);
